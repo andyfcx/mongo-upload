@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "mongo-upload"
+version = "0.1.0"
+description = ""
+authors = ["andyfcx <dreamcastle.andy@gmail.com>"]
+readme = "README.md"
+packages = [{include = "mongo_upload"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+click = "^8.1.7"
+pymongo = "^4.7.2"
+cryptography = "^42.0.5"
+rich = "^13.7.1"
+certifi
+
+[tool.poetry.scripts]
+mongo_upload = "mongo_upload.cli:cli"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
