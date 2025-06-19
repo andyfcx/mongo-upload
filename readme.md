@@ -32,3 +32,9 @@ Built with:
 ```bash
 poetry install
 poetry run mongo_upload login
+```
+
+### Option 2: Install as a global command
+```
+./install.sh
+```
