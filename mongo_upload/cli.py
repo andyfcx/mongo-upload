@@ -2,6 +2,7 @@ import click
 from pathlib import Path
 from auth import generate_keys, encrypt_and_store_credentials, load_credentials
 from uploader import upload_file
+from urllib.parse import quote_plus
 import certifi
 
 CRED_FILE = Path.home() / ".mongo_upload" / "credentials.enc"
@@ -24,8 +25,16 @@ def login_cmd():
     port = click.prompt("Mongo port: (Default 27017)", default=27017, type=int)
     auth_db = click.prompt("Auth source: ", default="admin")
 
-    mongo_uri = f"mongodb://{user}:{password}@{host}:{port}/?authSource={auth_db}&tls=true&tlsCAFile={certifi.where()}"
-    
+    user_enc = quote_plus(user)
+    pass_enc = quote_plus(password)
+
+    ca_path = certifi.where()
+    mongo_uri = (
+        f"mongodb://{user_enc}:{pass_enc}@{host}:{port}/"
+        f"?authSource={auth_db}"
+        f"&tls=true"
+        f"&tlsCAFile={ca_path}"
+    )
     generate_keys()
     encrypt_and_store_credentials({"uri": mongo_uri})
     click.echo("You have logged in, credentials are saved.")
