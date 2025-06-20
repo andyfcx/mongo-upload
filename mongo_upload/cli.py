@@ -19,10 +19,10 @@ def login_cmd():
         click.echo("You have logged in, to logout, use `mongo_upload logout`")
         return
 
-    user = click.prompt("Mongo username: ", type=str)
-    password = click.prompt("Mongo password: ", hide_input=True)
-    host = click.prompt("Mongo host: (Default localhost)", default="localhost")
-    port = click.prompt("Mongo port: (Default 27017)", default=27017, type=int)
+    user = click.prompt("Mongo username", type=str)
+    password = click.prompt("Mongo password", hide_input=True)
+    host = click.prompt("Mongo host", default="localhost")
+    port = click.prompt("Mongo port", default=27017, type=int)
     auth_db = click.prompt("Auth source: ", default="admin")
 
     user_enc = quote_plus(user)
