@@ -1,7 +1,7 @@
 import click
 from pathlib import Path
-from auth import generate_keys, encrypt_and_store_credentials, load_credentials
-from uploader import upload_file
+from mongo_upload.auth import generate_keys, encrypt_and_store_credentials, load_credentials
+from mongo_upload.uploader import upload_file
 from urllib.parse import quote_plus
 import certifi
 
